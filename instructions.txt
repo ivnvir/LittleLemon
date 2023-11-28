@@ -21,7 +21,10 @@
     python manage.py makemigrations
     python manage.py makemigrations restaurant
     python manage.py migrate
-- If you want to use admin interface, create superuser:
+- Configure admin's superuser:
     python manage.py createsuperuser
+- Add data:
+    http://127.0.0.1:8000/admin/restaurant/menu/add/
+
 - If you want to run unit tests (inside "/littlemon" folder):
     python manage.py test tests/

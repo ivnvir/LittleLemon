@@ -1,12 +1,17 @@
-from django.http import HttpRequest
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.core import serializers
 from rest_framework import generics
-from rest_framework import viewsets
+from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticated
 
-from .serializers import MenuSerializer
-from .models import Booking, Menu
+from .serializers import BookingSerializer, MenuItemSerializer
+from .models import Booking, MenuItem
+from rest_framework import permissions
+
+
+def sayHello(request):
+    return HttpResponse('Hello World')
 
 
 def index(request: HttpRequest):
@@ -27,16 +32,16 @@ def reservations(request: HttpRequest):
 class MenuItemsView(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
 
-    queryset = Menu.objects.all()
-    serializer_class = MenuSerializer
+    queryset = MenuItem.objects.all()
+    serializer_class = MenuItemSerializer
 
 
 class SingleMenuItemView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Menu.objects.all()
-    serializer_class = MenuSerializer
+    queryset = MenuItem.objects.all()
+    serializer_class = MenuItemSerializer
 
 
-class BookingViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
-
+class BookingViewSet(ModelViewSet):
     queryset = Booking.objects.all()
+    serializer_class = BookingSerializer
+    permission_classes = [permissions.IsAuthenticated]

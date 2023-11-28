@@ -8,6 +8,7 @@ router: DefaultRouter = DefaultRouter()
 router.register(r"tables", views.BookingViewSet)
 
 urlpatterns = [
+    # path("", sayHello, name="sayHello"),
     path("", views.index, name="home"),
     path("about/", views.about, name="about"),
     path("menu/", views.MenuItemsView.as_view(), name="menu"),

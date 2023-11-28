@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     "restaurant",
 ]
 
-# djoser library settings
 DJOSER = {"USER_ID_FIELD": "username"}
 
 MIDDLEWARE = [
